@@ -1,34 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useEffect, useState } from 'react'
 import viteLogo from '/vite.svg'
+import DogBreed from './components/DogBreed'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [dogBreeds, setdogBreeds] = useState([]);
+
+  const breedsEndpoint = 'https://dogapi.dog/api/v2/breeds';
+
+  const fetchDogBreeds = async (endPoint) => {
+    try{
+      const response = await fetch(endPoint);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch! Error code ${response.status}`);
+      }
+      const data = await response.json();
+      return data; 
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    const assignBreeds = async () => {
+      const breedData = await fetchDogBreeds(breedsEndpoint); 
+      if (breedData) {
+        setdogBreeds([...breedData.data]);
+      }
+    }
+    assignBreeds();
+  }, []);
 
   return (
     <>
+      <div className='flex justify-center items-center '>
+        
+        <img src={viteLogo}  alt="Vite logo" />
+      </div>
+      <h1 className="text-blue-600 two text-2xl tracking-wider uppercase">Dog Facts</h1>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>Available Dog Breeds</h2>
+        <div>
+          {dogBreeds.length != 0 &&
+          dogBreeds.map((breed, index) => (
+            <DogBreed breed={breed} key={index}/>
+          ))}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+   </>
   )
 }
 
