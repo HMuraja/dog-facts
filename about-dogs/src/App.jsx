@@ -1,28 +1,14 @@
 import { useEffect, useState } from 'react'
-import DogBreed from './components/DogBreed'
+import Breeds from './components/Breeds';
 import './App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDog } from '@fortawesome/free-solid-svg-icons'
+import fetchDogBreeds from './components/fecthDogBreeds';
 
 function App() {
   const [dogBreeds, setdogBreeds] = useState([]);
-  
 
   const breedsEndpoint = 'https://dogapi.dog/api/v2/breeds';
-
-  const fetchDogBreeds = async (endPoint) => {
-    try{
-      const response = await fetch(endPoint);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch! Error code ${response.status}`);
-      }
-      const data = await response.json();
-      return data; 
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   useEffect(() => {
     const assignBreeds = async () => {
@@ -34,13 +20,7 @@ function App() {
     assignBreeds();
   }, []);
 
-  const mapBreeds = () => {
-      let colorIndex = 0;
-      return dogBreeds.map((breed, index) => {
-        colorIndex == 3 ? colorIndex=0 : colorIndex++;
-        return <DogBreed breed={breed} key={index} indx={colorIndex}/>
-      });
-  }
+
 
   return (
     <div className="p-10">
@@ -53,9 +33,8 @@ function App() {
       
       <div>
         <h2 className="text-white font-theme font-bold text-2xl tracking-widest my-2 py-2 rounded-4xl flex justify-center bg-rose-c uppercase">The Dog Breeds</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {dogBreeds.length !== 0 && mapBreeds()}
-        </div>
+        {dogBreeds.length !== 0 && 
+        <Breeds breedsObj={dogBreeds}/>}
       </div>
    </div>
   )
