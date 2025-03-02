@@ -8,6 +8,13 @@ The goal of this project:
 
 "As a **user**, I want to **learn more about dogs**, so that **I can be more knowledgable about them when I chat to the dog people**."
 
+## Features
+
+- View list facts about dog breeds
+- View random facts about dogs
+- Search dog breeds
+- Search dog groups
+
 ## Technologies
 ### [React Vite](https://react.dev/)
 A component-based JavaScript library is used to build the interface for this library. Selected for this project as it makes application layout build easy and quick.

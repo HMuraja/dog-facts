@@ -1,2 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+    --font-theme: "Quicksand", "sans-serif";
+    --font-read: "Quicksand", "serif";
+    --breakpoint-3xl: 120rem;
+    --color-blue-c: #355070;
+    --color-violet-c: #6d597a;
+    --color-rose-c: #b56576;
+    --color-coral-c: #e56b6f;
+    --color-buff-c: #eaac8b;
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+    /* ... */
+  }
