@@ -4,7 +4,7 @@ function dogBreed({breed, indx}) {
   // Color list, assigned based on the the index assigned
   const bgColorsList = ['bg-violet-c', 'bg-buff-c', 'bg-blue-c','bg-coral-c'];
   const txtColorsList = ['text-buff-c', 'text-violet-c', 'text-coral-c', 'text-blue-c'];
-  const divColorsList = ['text-rose-c', 'text-coral-c', 'text-violet-c', 'text-buff-c'];
+  const divColorsList = ['text-rose-c', 'text-rose-c', 'text-violet-c', 'text-blue-c'];
   
   const factsTitleTxt = `uppercase font-theme tracking-widerfont-bold text-sm font-bold flex justify-end pr-2 ${txtColorsList[indx]}`
   const factsTxt = "font-read text-sm tracking-wider "
