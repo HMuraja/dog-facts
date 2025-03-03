@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDog } from '@fortawesome/free-solid-svg-icons'
 import fetchDogData from './components/fetchDogData';
 import DogFacts from './components/DogFacts';
+import DogGroups from './components/DogGroups';
 
 function App() {
   const [dogBreeds, setdogBreeds] = useState([]);
@@ -19,8 +20,6 @@ function App() {
     assignBreeds();
   }, []);
 
-
-
   return (
     <div className="p-10">
       <div className='flex py-2'>
@@ -32,6 +31,7 @@ function App() {
       
       <div>
         <DogFacts/>
+        <DogGroups/>
 
         {dogBreeds.length !== 0 && 
         <Breeds breedsObj={dogBreeds}/>}
