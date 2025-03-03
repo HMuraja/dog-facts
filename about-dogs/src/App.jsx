@@ -14,9 +14,7 @@ function App() {
   useEffect(() => {
     const assignBreeds = async () => {
       const breedData = await fetchDogData(breedsEndpoint); 
-      if (breedData) {
-        setdogBreeds([...breedData]);
-      }
+      setdogBreeds([...breedData]);
     }
     assignBreeds();
   }, []);
