@@ -9,16 +9,7 @@ import DogGroups from './components/DogGroups';
 
 function App() {
   const [dogBreeds, setdogBreeds] = useState([]);
-
-  const breedsEndpoint = 'https://dogapi.dog/api/v2/breeds';
-
-  useEffect(() => {
-    const assignBreeds = async () => {
-      const breedData = await fetchDogData(breedsEndpoint); 
-      setdogBreeds([...breedData]);
-    }
-    assignBreeds();
-  }, []);
+  const [groupId, setGroupId] = useState("");
 
   return (
     <div className="p-10">
@@ -31,8 +22,13 @@ function App() {
       
       <div>
         <DogFacts/>
-        <DogGroups/>
+        <DogGroups 
+          onValueChange={setGroupId} 
+          selectedId={groupId}
+          onBreedsValueChange={setdogBreeds}
 
+        />
+ 
         {dogBreeds.length !== 0 && 
         <Breeds breedsObj={dogBreeds}/>}
       </div>
