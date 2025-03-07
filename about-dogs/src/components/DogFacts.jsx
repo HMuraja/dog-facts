@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import fetchDogData from './fetchDogData';
 
 function DogFacts() {
@@ -23,7 +23,7 @@ function DogFacts() {
     <div className="text-white font-theme my-2 shadow-xl py-1 rounded-xl bg-white flex flex-col items-center">
         <p className="text-rose-c text-lg font-semibold uppercase">Fun fact</p>
         <div className='flex items-center justify-center h-30 w-full p-2 text-center text-rose-c'>
-            "{fact}"
+            {fact}
         </div>
         <button className={btnStyle} onClick={()=>getDogFact()}>New Fact</button>
     </div>
