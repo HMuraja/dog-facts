@@ -12,21 +12,21 @@ function dogBreed({breed, indx}) {
   const dividerStyle = `border-2 rounded-lg mb-2 ${divColorsList[indx]}`
   return (
     <div className= {bgChoice}>
-        <h2 className={`flex justify-center text-2xl font-theme font-bold tracking-wider pb-1 ${txtColorsList[indx]}`}>{breed.attributes.name}</h2>
+        <h2 className={`flex justify-center text-2xl font-theme font-bold tracking-wider pb-1 ${txtColorsList[indx]}`}>{breed.name}</h2>
         <hr className={dividerStyle}/>
         <div className="grid grid-cols-2 gap-y-1 pb-3">
           <h3 className={factsTitleTxt}>Avergae Life Span:</h3>
-          <p className={factsTxt}>{breed.attributes.life.max}-{breed.attributes.life.min} years</p>
+          <p className={factsTxt}>{breed.life.max}-{breed.life.min} years</p>
           <h3 className={factsTitleTxt}>Size:</h3>
           <div className="grid grid-cols-1">
-            <p className={factsTxt}> female {breed.attributes.female_weight.min}-{breed.attributes.female_weight.max} kg</p>
-            <p className={factsTxt}> male {breed.attributes.male_weight.min}-{breed.attributes.male_weight.max} kg</p>
+            <p className={factsTxt}> female {breed.female_weight.min}-{breed.female_weight.max} kg</p>
+            <p className={factsTxt}> male {breed.male_weight.min}-{breed.male_weight.max} kg</p>
           </div>
           <h3 className={factsTitleTxt}>Hypoallergenic:</h3>
-          <p className={factsTxt}>{breed.attributes.hypoallergenic ? 'Yes' : 'No'}</p>
+          <p className={factsTxt}>{breed.hypoallergenic ? 'Yes' : 'No'}</p>
         </div>
         <hr className={dividerStyle}/>
-        <p className={factsTxt}>{breed.attributes.description}</p>
+        <p className={factsTxt}>{breed.description}</p>
     </div>
   )
 }

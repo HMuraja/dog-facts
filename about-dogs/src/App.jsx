@@ -5,11 +5,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDog } from '@fortawesome/free-solid-svg-icons'
 import fetchDogData from './components/fetchDogData';
 import DogFacts from './components/DogFacts';
-import DogGroups from './components/DogGroups';
+import FilterMenu from './components/FilterMenu';
 
 function App() {
   const [dogBreeds, setdogBreeds] = useState([]);
-  const [groupId, setGroupId] = useState("");
+  const [groupList, setGroupList] = useState([]);
+
+  const getGroupData = async() => {
+    const fetchedData = await fetchDogData('https://dogapi.dog/api/v2/groups')
+    const prunedData = [fetchedData.map((group) => (
+       {"id": group.id, "name": group.attributes.name}
+    ))]
+    setGroupList(...prunedData)
+  }
+
+  useEffect(()=>{
+    getGroupData()
+  }, []);
 
   return (
     <div className="p-10">
@@ -22,13 +34,11 @@ function App() {
       
       <div>
         <DogFacts/>
-        <DogGroups 
-          onValueChange={setGroupId} 
-          selectedId={groupId}
-          onBreedsValueChange={setdogBreeds}
-
+        <FilterMenu 
+          groups={groupList} 
+          onDogBreedsChange={setdogBreeds}
         />
- 
+        
         {dogBreeds.length !== 0 && 
         <Breeds breedsObj={dogBreeds}/>}
       </div>
