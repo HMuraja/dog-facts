@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Button({child}) {
-    const btnStyle = "text-white font-bold p-3 rounded-4xl bg-violet-c w-40 text-center mt-2 hover:bg-blue-c "
+function Button({clickFunc = () => {}, text, customStyle='border-1 hover:bg-violet-c hover:text-white'}) {
+  const btnStyle = `font-bold p-1 rounded-3xl w-70 cursor-pointer active:inset-shadow-sm inset-shadow-black ${customStyle}`;
   return (
-    <button className='btnStyle'>{child}</button>
+    <button className={btnStyle} onClick={clickFunc}>{text}</button>
   )
 }
 
