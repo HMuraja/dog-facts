@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import fetchDogData from './fetchDogData';
+import Button from './Button';
 
 function FilterMenu({groups, onDogBreedsChange}) {
   const [isHidden, setIsHidden] = useState(true);
   const [groupChoice, setGroupChoice] = useState("");
   const dropdownRef = useRef();
-
-  
-  const btnStyle = `border-1 font-bold p-1 rounded-3xl w-70 cursor-pointer hover:bg-buff-c active:inset-shadow-sm inset-shadow-black`;
   const groupMenuStyle = `p-1 border-1 rounded-3xl w-70 absolute top-10 bg-white ${isHidden && "hidden"}`
   
   const fetchExampleBreeds = async () => {
@@ -70,10 +68,10 @@ function FilterMenu({groups, onDogBreedsChange}) {
 
   return (
     <div className='flex justify-around relative text-violet-c text-center'>
-
+      
       {/* Dorpdown menu element */}
         <div ref={dropdownRef}>
-          <button className={btnStyle}>Select a Group</button>
+          <Button text='Sample breeds'/>
           <ul className={groupMenuStyle}>
             {groups.map((group) => (
                 <li 
@@ -84,15 +82,12 @@ function FilterMenu({groups, onDogBreedsChange}) {
                 </li>
             )
             )}
-        </ul>
-          
+          </ul>
         </div>
-        
-        <button className={btnStyle} onClick={()=> getBreeds()}>Search</button>
-        <button className={btnStyle} onClick={()=> getSampleBreeds()}>Get sample breeds</button>
 
-
-        
+        <Button clickFunc={()=> getBreeds()} text='Search'/>
+        <Button clickFunc={()=> getSampleBreeds()} text='Sample breeds'/>
+ 
     </div>
     
   )
