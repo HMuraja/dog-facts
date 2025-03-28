@@ -1,29 +1,23 @@
-import { useState} from 'react'
-import fetchDogData from './fetchDogData';
+import {fetchDogData, fetchABreed} from './utils';
 import Button from './Button';
 import GroupsDropDown from './GroupsDropDown';
 
-function FilterMenu({groups, onDogBreedsChange}) {
-  const [groupChoice, setGroupChoice] = useState("");
+function FilterMenu({groups, onDogBreedsChange, group, changeGroup}) {
   
-  const fetchABreed = async (id) => {
-    const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/breeds/${id}`);
-    return dataFetch.data;
-  }
-
-  const fetchBreedIds = async() => {
-      const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/groups/${groupChoice}`)
-      return dataFetch.data.relationships.breeds.data;
-  }
-
+  
   const getSampleBreeds = async () => {
-    setGroupChoice("")
+    changeGroup({name:"", id: null})
     const breedData = await fetchDogData('https://dogapi.dog/api/v2/breeds');
     onDogBreedsChange({...breedData})
   }
+  
+  const fetchBreedIds = async() => {
+    const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/groups/${group.id}`)
+    return dataFetch.data.relationships.breeds.data;
+  }
 
   const getBreeds = async() => {
-    if (groupChoice == ""){
+    if (group.name == ""){
       getSampleBreeds()
     }else{
       const breedIds = await fetchBreedIds();
@@ -36,13 +30,12 @@ function FilterMenu({groups, onDogBreedsChange}) {
   }
 
   return (
-    <div className='flex justify-around relative text-violet-c text-center'>
+    <div className='flex justify-around relative text-violet-c text-center '>
       <GroupsDropDown 
-        changeSelection ={setGroupChoice} 
-        currentGroup={groupChoice}
+        changeSelection ={changeGroup} 
+        currentGroup={group}
         grouplist = {groups}
-        />    
-
+        /> 
       <Button clickFunc={()=> getBreeds()} text='Search'/>
       <Button clickFunc={()=> getSampleBreeds()} text='All Breeds'/>
     </div>

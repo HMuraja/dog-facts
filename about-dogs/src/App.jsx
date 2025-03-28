@@ -3,13 +3,14 @@ import BreedList from './components/BreedList';
 import './App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDog } from '@fortawesome/free-solid-svg-icons'
-import fetchDogData from './components/fetchDogData';
+import {fetchDogData} from './components/utils';
 import DogFacts from './components/DogFacts';
 import FilterMenu from './components/FilterMenu';
 
 function App() {
   const [dogBreeds, setdogBreeds] = useState({});
   const [groupList, setGroupList] = useState([]);
+  const [groupChoice, setGroupChoice] = useState({name:"", id:null});
 
   const getGroupData = async() => {
     const fetchedData = await fetchDogData('https://dogapi.dog/api/v2/groups')
@@ -33,15 +34,23 @@ function App() {
       </div>
       <hr className="text-rose-c border-4 rounded-lg text-center"/>
       
-      <div>
+      <div className="my-4">
         <DogFacts/>
+        <h2 className="text-rose-c text-lg font-semibold uppercase text-center">Search Breeds</h2>
         <FilterMenu 
           groups={groupList} 
           onDogBreedsChange={setdogBreeds}
+          group = {groupChoice}
+          changeGroup = {setGroupChoice}
       />
 
       {Object.keys(dogBreeds).length !== 0 && 
-      <BreedList breedsObj={dogBreeds}/>}
+      <BreedList 
+        breedsObj={dogBreeds} 
+        setBreeds={setdogBreeds}
+        group = {groupChoice}
+
+      />}
                
       </div>
       

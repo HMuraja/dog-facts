@@ -29,8 +29,8 @@ function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
         <ul className={groupMenuStyle}>
         {grouplist.map((group) => (
             <li 
-            className={`hover:bg-buff-c cursor-pointer rounded-xl ${group.id === currentGroup && "font-bold"}`}
-            onClick={()=> changeSelection(group.id)} 
+            className={`hover:bg-buff-c cursor-pointer rounded-xl ${group.id === currentGroup.id && "font-bold"}`}
+            onClick={()=> changeSelection({name: group.name, id: group.id})} 
             key={group.id}>
                 {group.name}
             </li>
