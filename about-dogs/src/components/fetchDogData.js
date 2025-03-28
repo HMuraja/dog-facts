@@ -6,7 +6,7 @@
         throw new Error(`Failed to fetch! Error code ${response.status}`);
       }
       const parsedData = await response.json();
-      return parsedData.data; 
+      return parsedData; 
 
     } catch (error) {
       console.error(error);

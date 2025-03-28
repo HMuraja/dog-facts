@@ -4,9 +4,10 @@ import Button from './Button';
 
 function DogFacts() {
     const [fact, setFact] = useState("")
+
     const getDogFact = async () => {
-        const data = await fetchDogData('https://dogapi.dog/api/v2/facts');
-        setFact(data[0].attributes.body);
+        const factsObj = await fetchDogData('https://dogapi.dog/api/v2/facts');
+        setFact(factsObj.data[0].attributes.body);
     }
     
     useEffect(()=>{

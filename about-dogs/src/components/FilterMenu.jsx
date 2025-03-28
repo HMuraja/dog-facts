@@ -6,29 +6,20 @@ import GroupsDropDown from './GroupsDropDown';
 function FilterMenu({groups, onDogBreedsChange}) {
   const [groupChoice, setGroupChoice] = useState("");
   
-  const fetchExampleBreeds = async () => {
-    const dataFetch = await fetchDogData('https://dogapi.dog/api/v2/breeds'); 
-    return dataFetch
-  }
-  
   const fetchABreed = async (id) => {
-    const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/breeds/${id}`); 
-    return dataFetch.attributes;
+    const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/breeds/${id}`);
+    return dataFetch.data;
   }
 
   const fetchBreedIds = async() => {
       const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/groups/${groupChoice}`)
-      return dataFetch.relationships.breeds.data;
+      return dataFetch.data.relationships.breeds.data;
   }
 
   const getSampleBreeds = async () => {
     setGroupChoice("")
-    const breedData = await fetchExampleBreeds();      
-    const prunedBreedData = breedData.map((item)=>(
-      item.attributes
-    ))
-    onDogBreedsChange([...prunedBreedData])
-
+    const breedData = await fetchDogData('https://dogapi.dog/api/v2/breeds');
+    onDogBreedsChange({...breedData})
   }
 
   const getBreeds = async() => {
@@ -40,7 +31,7 @@ function FilterMenu({groups, onDogBreedsChange}) {
         breedIds.map(async (breedId) => {
         return await fetchABreed(breedId.id)})
         )
-      onDogBreedsChange([...groupBreedList]);
+      onDogBreedsChange({data:[...groupBreedList]});
     }
   }
 
@@ -52,9 +43,8 @@ function FilterMenu({groups, onDogBreedsChange}) {
         grouplist = {groups}
         />    
 
-        <Button clickFunc={()=> getBreeds()} text='Search'/>
-        <Button clickFunc={()=> getSampleBreeds()} text='Sample breeds'/>
- 
+      <Button clickFunc={()=> getBreeds()} text='Search'/>
+      <Button clickFunc={()=> getSampleBreeds()} text='All Breeds'/>
     </div>
     
   )

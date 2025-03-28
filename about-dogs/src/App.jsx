@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Breeds from './components/Breeds';
+import BreedList from './components/BreedList';
 import './App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDog } from '@fortawesome/free-solid-svg-icons'
@@ -8,12 +8,13 @@ import DogFacts from './components/DogFacts';
 import FilterMenu from './components/FilterMenu';
 
 function App() {
-  const [dogBreeds, setdogBreeds] = useState([]);
+  const [dogBreeds, setdogBreeds] = useState({});
   const [groupList, setGroupList] = useState([]);
 
   const getGroupData = async() => {
     const fetchedData = await fetchDogData('https://dogapi.dog/api/v2/groups')
-    const prunedData = [fetchedData.map((group) => (
+    const justData = fetchedData.data
+    const prunedData = [justData.map((group) => (
        {"id": group.id, "name": group.attributes.name}
     ))]
     setGroupList(...prunedData)
@@ -37,11 +38,13 @@ function App() {
         <FilterMenu 
           groups={groupList} 
           onDogBreedsChange={setdogBreeds}
-        />
-        
-        {dogBreeds.length !== 0 && 
-        <Breeds breedsObj={dogBreeds}/>}
+      />
+
+      {Object.keys(dogBreeds).length !== 0 && 
+      <BreedList breedsObj={dogBreeds}/>}
+               
       </div>
+      
    </div>
   )
 }

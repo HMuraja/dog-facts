@@ -25,7 +25,7 @@ function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
 
   return (
     <div ref={dropdownRef}>
-        <Button text='Sample breeds'/>
+        <Button text='Choose Breed Group'/>
         <ul className={groupMenuStyle}>
         {grouplist.map((group) => (
             <li 
