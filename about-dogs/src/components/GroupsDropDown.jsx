@@ -4,7 +4,7 @@ import Button from './Button';
 function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
     const [isHidden, setIsHidden] = useState(true);
     const dropdownRef = useRef();
-    const groupMenuStyle = `p-1 border-1 rounded-3xl w-70 absolute top-10 bg-white ${isHidden && "hidden"}`
+    const groupMenuStyle = `p-1 border-1 rounded w-50 absolute top-10 bg-white ${isHidden && "hidden"}`
 
     useEffect(() => {
         //Check if element clicked is part of the dropdown
@@ -25,7 +25,9 @@ function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
 
   return (
     <div ref={dropdownRef}>
-        <Button text='Choose Breed Group'/>
+        <p className='p-1 bg-white cursor-pointer w-50 hover:bg-buff-c active:inset-shadow-sm inset-shadow-black border rounded-l-lg'>
+          {currentGroup.name == "" ? 'Choose A Group' : currentGroup.name}
+        </p>
         <ul className={groupMenuStyle}>
         {grouplist.map((group) => (
             <li 

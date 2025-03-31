@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <div className="p-10">
+    <div className="p-10 text-xs md:text-base">
       <div className='flex py-2'>
         <FontAwesomeIcon icon={faDog} className="text-rose-c font-bold text-6xl pr-3"/>
         <h1 className="text-rose-c font-theme font-bold two text-6xl tracking-wider uppercase">All About Dogs
@@ -36,7 +36,7 @@ function App() {
       
       <div className="my-4">
         <DogFacts/>
-        <h2 className="text-rose-c text-lg font-semibold uppercase text-center">Search Breeds</h2>
+        <h2 className="text-rose-c text-lg font-semibold uppercase text-center">List Breeds</h2>
         <FilterMenu 
           groups={groupList} 
           onDogBreedsChange={setdogBreeds}
