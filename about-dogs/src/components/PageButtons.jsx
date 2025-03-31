@@ -19,7 +19,11 @@ function PageButtons({updatePage, breedPages, breedLinks}) {
             onClick= {firstPage ? () => undefined : ()=> updatePage(breedLinks.prev)} 
             className={btnStyle}
         />
-        <p className='text-center my-auto'>{breedPages.current}/{breedPages.last}</p>
+        <div>
+            <h2>All Breeds</h2>
+            <p className='text-center my-auto'>{breedPages.current}/{breedPages.last}</p>
+        </div>
+        
         <FontAwesomeIcon 
             icon={faCaretRight} 
             onClick={lastPage ? () => undefined :()=> updatePage(breedLinks.next)} 

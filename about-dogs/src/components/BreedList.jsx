@@ -36,7 +36,7 @@ function BreedList({breedsObj, setBreeds, group}) {
     return (
         <div>
             {displayBreedCard()}
-            <div className='flex justify-center text-stone-950 my-2 py-2 gap-4 border-b-2 border-b-stone-950'>
+            <div className='flex justify-center items-center text-stone-950 my-2 py-2 gap-4 border-b-2 border-b-stone-950'>
                 {Object.keys(breedsObj).length !== 1 ?
                 <PageButtons 
                     updatePage = {changePage} 
@@ -44,10 +44,10 @@ function BreedList({breedsObj, setBreeds, group}) {
                     breedLinks={breedsObj.links}
                 />
                 :
-                <p className=" text-center font-bold">Number of breeds: {Object.keys(breedsObj.data).length}</p>
+                <p className=" text-center font-bold"> {group.name}: {Object.keys(breedsObj.data).length} breeds</p>
                 }
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 py-2 md:grid-cols-2 xl:grid-cols-3 gap-4'>
                 {mapBreeds()}
             </div>
         </div>

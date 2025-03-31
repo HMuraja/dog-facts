@@ -16,4 +16,3 @@ export  const fetchABreed = async (id) => {
     const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/breeds/${id}`);
     return dataFetch.data;
   }
-

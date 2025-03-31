@@ -11,3 +11,7 @@
     --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
     /* ... */
   }
+
+html, body, #root {
+    height: 100%
+  }
