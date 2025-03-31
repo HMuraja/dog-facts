@@ -1,11 +1,19 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose} from '@fortawesome/free-solid-svg-icons'
 
+function DogBreed({breed, closeBreedCard}) {
 
-function dogBreed({breed}) {
-
-  const factsTitleTxt = `text-rose-c font-theme tracking-wider font-bold flex justify-end`
+  const factsTitleTxt = `text-rose-c font-theme tracking-wider font-bold text-end`
   const factsTxt = "font-read text-sm tracking-wider my-auto"
   return (
-    <div className= 'm-1 p-5 rounded-lg shadow-xl text-violet-c space-y-1'>
+    <div className= 'bg-white m-1 p-4 rounded-lg shadow-xl text-violet-c space-y-1 relative max-w-md w-full mx-4'>
+      <div className="flex justify-end">
+        <FontAwesomeIcon 
+              icon={faClose} 
+              onClick={()=>closeBreedCard({})} 
+              className="cursor-pointer text-rose-c font-bold text-2xl"
+          />
+      </div>
         <h2 className='text-center text-rose-c text-2xl font-theme font-bold tracking-wider'>{breed.name}</h2>
         <div className="grid grid-cols-2 gap-y-1 gap-x-2 border-y-3 py-1">
           <h3 className={factsTitleTxt}>Avergae Life Span:</h3>
@@ -23,4 +31,4 @@ function dogBreed({breed}) {
   )
 }
 
-export default dogBreed
+export default DogBreed

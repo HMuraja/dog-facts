@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import Button from './Button';
 
 function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
