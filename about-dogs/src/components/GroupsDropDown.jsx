@@ -25,13 +25,13 @@ function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
 
   return (
     <div ref={dropdownRef}>
-        <p className='p-1 bg-white cursor-pointer w-50 hover:bg-buff-c active:inset-shadow-sm inset-shadow-black border rounded-l-lg'>
+        <p className='p-1 bg-white cursor-pointer w-50 hover:bg-stone-100 active:inset-shadow-sm inset-shadow-black border-2 rounded-l-lg'>
           {currentGroup.name == "" ? 'Choose A Group' : currentGroup.name}
         </p>
         <ul className={groupMenuStyle}>
         {grouplist.map((group) => (
             <li 
-            className={`hover:bg-buff-c cursor-pointer rounded-xl ${group.id === currentGroup.id && "font-bold"}`}
+            className={`hover:bg-stone-100 cursor-pointer rounded-xl ${group.id === currentGroup.id && "font-bold"}`}
             onClick={()=> changeSelection({name: group.name, id: group.id})} 
             key={group.id}>
                 {group.name}

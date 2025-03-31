@@ -15,12 +15,12 @@ function DogFacts() {
     },[]);
 
   return (
-    <div className=" font-theme my-3 shadow-xl py-1 rounded-xl bg-white flex flex-col items-center">
-        <p className="text-rose-c text-lg font-semibold uppercase">Fun fact</p>
-        <div className='flex items-center justify-center h-30 w-full p-2 text-center text-rose-c'>
+    <div className=" my-3 shadow-xl py-1 border-2 rounded-xl bg-white flex flex-col items-center">
+        <p className="text-stone-950 font-theme text-lg font-semibold uppercase">A Fun fact</p>
+        <div className='flex items-center justify-center h-30 w-full p-2 text-center text-stone-950'>
             {fact}
         </div>
-        <Button text='New fact' clickFunc={()=>getDogFact()} customStyle = "text-white my-2 border-1 bg-violet-c hover:bg-white hover:text-violet-c hover:border-1"/>
+        <Button text='New fact' clickFunc={()=>getDogFact()} />
     </div>
 
   )

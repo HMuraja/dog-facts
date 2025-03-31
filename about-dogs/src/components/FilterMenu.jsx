@@ -30,7 +30,7 @@ function FilterMenu({groups, onDogBreedsChange, group, changeGroup}) {
   }
 
   return (
-    <div className='flex justify-around text-violet-c text-center'>
+    <div className='flex justify-around text-center'>
       <Button clickFunc={()=> getSampleBreeds()} text='All Breeds'/>
       <div className='flex justify-center relative w-50'>
         <GroupsDropDown 

@@ -36,7 +36,7 @@ function BreedList({breedsObj, setBreeds, group}) {
     return (
         <div>
             {displayBreedCard()}
-            <div className='flex justify-center text-rose-c my-2 py-2 gap-4 border-b-2 border-b-rose-c'>
+            <div className='flex justify-center text-stone-950 my-2 py-2 gap-4 border-b-2 border-b-stone-950'>
                 {Object.keys(breedsObj).length !== 1 ?
                 <PageButtons 
                     updatePage = {changePage} 
