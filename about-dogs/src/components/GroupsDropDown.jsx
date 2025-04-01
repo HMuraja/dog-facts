@@ -28,7 +28,11 @@ function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
     const downIcon = () => {
       return (
         <>
-
+          {isHidden ? 
+          <FontAwesomeIcon className='me-2' icon={faChevronDown} /> 
+          :
+          <FontAwesomeIcon className='me-2' icon={faChevronUp} /> 
+          }
           Choose A Group 
         </>
         )
@@ -36,29 +40,22 @@ function GroupsDropDown({grouplist, changeSelection, currentGroup}) {
             
 
   return (
-    <>
-      {isHidden ? 
-          <FontAwesomeIcon className='me-2' icon={faChevronDown} /> 
-          :
-          <FontAwesomeIcon className='me-2' icon={faChevronUp} /> 
-      }
-      <div ref={dropdownRef} className='text-start'>
-          <p className='p-1 bg-white cursor-pointer w-50 hover:bg-stone-100 active:inset-shadow-sm inset-shadow-black border-2 rounded-l-lg'>
-            {currentGroup.name == "" ? downIcon() : currentGroup.name}
-          </p>
-          <ul className={groupMenuStyle}>
-          {grouplist.map((group) => (
-              <li 
-              className={`hover:bg-stone-100 cursor-pointer rounded-xl ${group.id === currentGroup.id && "font-bold"}`}
-              onClick={()=> changeSelection({name: group.name, id: group.id})} 
-              key={group.id}>
-                  {group.name}
-              </li>
-          )
-          )}
-          </ul>
-      </div>
-    </>
+    <div ref={dropdownRef} className='text-start'>
+        <p className='p-1 bg-white cursor-pointer w-50 hover:bg-stone-100 active:inset-shadow-sm inset-shadow-black border-2 rounded-l-lg'>
+          {currentGroup.name == "" ? downIcon() : currentGroup.name}
+        </p>
+        <ul className={groupMenuStyle}>
+        {grouplist.map((group) => (
+            <li 
+            className={`hover:bg-stone-100 cursor-pointer rounded-xl ${group.id === currentGroup.id && "font-bold"}`}
+            onClick={()=> changeSelection({name: group.name, id: group.id})} 
+            key={group.id}>
+                {group.name}
+            </li>
+        )
+        )}
+        </ul>
+    </div>
   )
 }
 
