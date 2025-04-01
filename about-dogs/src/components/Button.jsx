@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Button({clickFunc = () => {}, text, customStyle='border-1 hover:bg-violet-c hover:text-white'}) {
-  const btnStyle = `font-bold p-1 rounded-3xl w-70 cursor-pointer active:inset-shadow-sm inset-shadow-black ${customStyle}`;
+function Button({clickFunc = () => {}, text, customStyle='rounded'}) {
+  const btnStyle = `font-bold p-1 w-50 cursor-pointer border-2 border-black bg-yellow-c hover:bg-yellow-dark-c active:inset-shadow-sm inset-shadow-black ${customStyle}`;
   return (
     <button className={btnStyle} onClick={clickFunc}>{text}</button>
   )

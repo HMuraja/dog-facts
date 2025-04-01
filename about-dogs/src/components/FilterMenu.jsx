@@ -1,39 +1,23 @@
-import { useState, useEffect, useRef } from 'react'
-import fetchDogData from './fetchDogData';
+import {fetchDogData, fetchABreed} from './utils';
 import Button from './Button';
+import GroupsDropDown from './GroupsDropDown';
 
-function FilterMenu({groups, onDogBreedsChange}) {
-  const [isHidden, setIsHidden] = useState(true);
-  const [groupChoice, setGroupChoice] = useState("");
-  const dropdownRef = useRef();
-  const groupMenuStyle = `p-1 border-1 rounded-3xl w-70 absolute top-10 bg-white ${isHidden && "hidden"}`
+function FilterMenu({groups, onDogBreedsChange, group, changeGroup}) {
   
-  const fetchExampleBreeds = async () => {
-    const dataFetch = await fetchDogData('https://dogapi.dog/api/v2/breeds'); 
-    return dataFetch
-  }
   
-  const fetchABreed = async (id) => {
-    const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/breeds/${id}`); 
-    return dataFetch.attributes;
-  }
-
-  const fetchBreedIds = async() => {
-      const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/groups/${groupChoice}`)
-      return dataFetch.relationships.breeds.data;
-  }
-
   const getSampleBreeds = async () => {
-    const breedData = await fetchExampleBreeds();      
-    const prunedBreedData = breedData.map((item)=>(
-      item.attributes
-    ))
-    onDogBreedsChange([...prunedBreedData])
-
+    changeGroup({name:"", id: null})
+    const breedData = await fetchDogData('https://dogapi.dog/api/v2/breeds');
+    onDogBreedsChange({...breedData})
+  }
+  
+  const fetchBreedIds = async() => {
+    const dataFetch = await fetchDogData(`https://dogapi.dog/api/v2/groups/${group.id}`)
+    return dataFetch.data.relationships.breeds.data;
   }
 
   const getBreeds = async() => {
-    if (groupChoice == ""){
+    if (group.name == ""){
       getSampleBreeds()
     }else{
       const breedIds = await fetchBreedIds();
@@ -41,53 +25,21 @@ function FilterMenu({groups, onDogBreedsChange}) {
         breedIds.map(async (breedId) => {
         return await fetchABreed(breedId.id)})
         )
-      onDogBreedsChange([...groupBreedList]);
+      onDogBreedsChange({data:[...groupBreedList]});
     }
   }
 
-  useEffect(() => {
-    //Check if element clicked is part of the dropdown
-    const handleClickOutside = (event) => {
-      console.log(dropdownRef.current.firstChild)
-      if (dropdownRef.current && dropdownRef.current.contains(event.target)) {
-        event.target == dropdownRef.current.firstChild ? 
-        setIsHidden((prev)=> !prev) : setIsHidden(false);
-      } else {
-        setIsHidden(true)}
-    };
-
-    // Add event listener
-    document.addEventListener("click", handleClickOutside);
-
-    // Cleanup function to remove event listener
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-
   return (
-    <div className='flex justify-around relative text-violet-c text-center'>
-      
-      {/* Dorpdown menu element */}
-        <div ref={dropdownRef}>
-          <Button text='Sample breeds'/>
-          <ul className={groupMenuStyle}>
-            {groups.map((group) => (
-                <li 
-                className={`hover:bg-buff-c cursor-pointer rounded-xl ${group.id === groupChoice && "bg-buff-c"}`}
-                onClick={()=> setGroupChoice(group.id)} 
-                key={group.id}>
-                    {group.name}
-                </li>
-            )
-            )}
-          </ul>
-        </div>
-
-        <Button clickFunc={()=> getBreeds()} text='Search'/>
-        <Button clickFunc={()=> getSampleBreeds()} text='Sample breeds'/>
- 
+    <div className='flex justify-around text-center'>
+      <Button clickFunc={()=> getSampleBreeds()} text='All Breeds'/>
+      <div className='flex justify-center relative w-50'>
+        <GroupsDropDown 
+          changeSelection ={changeGroup} 
+          currentGroup={group}
+          grouplist = {groups}
+          /> 
+        <Button clickFunc={()=> getBreeds()} text='Search' customStyle='rounded-r'/>
+      </div>
     </div>
     
   )

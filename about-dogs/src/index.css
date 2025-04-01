@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --font-theme: "Quicksand", "sans-serif";
-    --font-read: "Quicksand", "serif";
+    --font-theme: "Cinzel", "sans-serif";
+    --font-read: "Rokkitt", "serif";
     --breakpoint-3xl: 120rem;
-    --color-blue-c: #355070;
-    --color-violet-c: #6d597a;
-    --color-rose-c: #b56576;
-    --color-coral-c: #e56b6f;
-    --color-buff-c: #eaac8b;
+    --color-yellow-c: #ffc670;
+    --color-yellow-dark-c: #cca15f;
     --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
     --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
     /* ... */
+  }
+
+html, body, #root {
+    height: 100%
   }
