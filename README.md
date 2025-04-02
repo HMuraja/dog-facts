@@ -2,6 +2,8 @@
 
 This application provides you with information about dogs. The data is fetched from a dog [API](https://github.com/kinduff/dogapi.dog) that is provided by [kinduff](https://github.com/kinduff).
 
+[Deployed project](https://hmuraja.github.io/dog-facts)
+
 ## Design & UI
 
 The goal of this project: 
