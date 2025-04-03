@@ -27,10 +27,10 @@ function App() {
   }, []);
 
   return (
-    <div className="p-0 h-full text-xs font-read md:text-base flex flex-col">
-      <div className="p-10">
+    <div className="p-0 h-full text-xs font-read md:text-base flex flex-col ">
+      <div className="p-1 md:p-10 w-full xl:w-7xl mx-auto">
         <div className='flex justify-center py-2'>
-          <img src={logo}  alt="About dogs logo" className='max-w-100'/>
+          <img src={logo}  alt="About dogs logo" className='w-100'/>
         </div>
         <div className="my-4">
           <DogFacts/>
