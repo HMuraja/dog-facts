@@ -5,6 +5,7 @@ import {fetchDogData} from './components/utils';
 import DogFacts from './components/DogFacts';
 import FilterMenu from './components/FilterMenu';
 import Footer from './components/Footer';
+import logo from './assets/dog-facts-logo.png';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
     <div className="p-0 h-full text-xs font-read md:text-base flex flex-col">
       <div className="p-10">
         <div className='flex justify-center py-2'>
-          <img src='/dog-facts-logo.png' alt="About dogs logo" className='max-w-100'/>
+          <img src={logo}  alt="About dogs logo" className='max-w-100'/>
         </div>
         <div className="my-4">
           <DogFacts/>
